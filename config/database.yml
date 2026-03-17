@@ -3,8 +3,8 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: db
-  username: <%= ENV.fetch("POSTGRES_USER") { "postgres" } %>
-  password: <%= ENV.fetch("POSTGRES_PASSWORD") { "" } %>
+  username: <%= ENV.fetch("POSTGRES_USER", "postgres") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD", "") %>
   timeout: 5000
   checkout_timeout: 5
 
@@ -19,7 +19,7 @@ test:
 production:
   <<: *default
   database: app_production
-  password: <%= ENV.fetch("APP_DATABASE_PASSWORD") %>
+  password: <%= ENV.fetch("APP_DATABASE_PASSWORD", nil) %>
 
 cable:
   <<: *default
