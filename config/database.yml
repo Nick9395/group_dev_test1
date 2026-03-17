@@ -19,3 +19,8 @@ production:
   database: app_production
   username: postgres
   password: <%= ENV["APP_DATABASE_PASSWORD"] %>
+
+  # Action Cable / Solid Cable 用の DB 接続
+  cable:
+    <<: *default
+    database: app_production_cable
