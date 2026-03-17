@@ -3,8 +3,10 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: db
-  username: postgres
-  password: password
+  username: <%= ENV.fetch("POSTGRES_USER", "postgres") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD", "") %>
+  timeout: 5000
+  checkout_timeout: 5
 
 development:
   <<: *default
@@ -17,10 +19,9 @@ test:
 production:
   <<: *default
   database: app_production
-  username: postgres
-  password: <%= ENV["APP_DATABASE_PASSWORD"] %>
+  password: <%= ENV.fetch("APP_DATABASE_PASSWORD", nil) %>
 
-  # Action Cable / Solid Cable 用の DB 接続
-  cable:
-    <<: *default
-    database: app_production_cable
+cable:
+  <<: *default
+  database: app_production_cable
+  migrations_paths: db/cable_migrate
