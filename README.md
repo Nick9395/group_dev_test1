@@ -49,3 +49,11 @@ Docker, Github, ClaudeAIなどの練習を目的としています。
 - 都市爆破機能
 - 爆破予告の投稿機能
 - 他
+
+# デプロイ
+
+https://group-dev-test1.onrender.com/
+
+# ER図
+
+https://docs.google.com/spreadsheets/d/16cRnw4BspA6Wa4jGW1-asSGCAHDCItwtfKinyL2nabk/edit?gid=0#gid=0
