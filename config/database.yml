@@ -22,4 +22,5 @@ production:
 
   # Action Cable / Solid Cable 用の DB 接続
   cable:
-    <<: *production
+    <<: *default
+    database: app_production_cable
