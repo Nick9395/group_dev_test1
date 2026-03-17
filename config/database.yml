@@ -18,10 +18,14 @@ test:
 
 production:
   <<: *default
-  database: app_production
-  password: <%= ENV.fetch("APP_DATABASE_PASSWORD", nil) %>
+  url: <%= ENV["DATABASE_URL"] %>
 
-cable:
-  <<: *default
-  database: app_production_cable
-  migrations_paths: db/cable_migrate
+  cable:
+    <<: *default
+    url: <%= ENV["DATABASE_URL"] %>
+    migrations_paths: db/cable_migrate
+
+  queue:
+    <<: *default
+    url: <%= ENV["DATABASE_URL"] %>
+    migrations_paths: db/queue_migrate
