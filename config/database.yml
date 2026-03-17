@@ -16,11 +16,14 @@ test:
 
 production:
   <<: *default
-  database: app_production
-  username: postgres
-  password: <%= ENV["APP_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
 
-  # Action Cable / Solid Cable 用の DB 接続
   cable:
     <<: *default
-    database: app_production_cable
+    url: <%= ENV["DATABASE_URL"] %>
+    migrations_paths: db/cable_migrate
+
+  queue:
+    <<: *default
+    url: <%= ENV["DATABASE_URL"] %>
+    migrations_paths: db/queue_migrate
